@@ -1,6 +1,10 @@
-import Image from "next/image";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { SignUpButton } from "@clerk/nextjs";
+import { Link2, BarChart3, Zap, Shield } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default async function Home() {
   const { userId } = await auth();
@@ -10,64 +14,106 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="flex flex-col items-center">
+      {/* Hero Section */}
+      <section className="flex flex-col items-center gap-6 px-4 py-24 text-center max-w-3xl">
+        <Badge variant="secondary" className="text-sm px-3 py-1">
+          Free to use
+        </Badge>
+        <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+          Shorten links.{" "}
+          <span className="text-[#6c47ff]">Amplify reach.</span>
+        </h1>
+        <p className="max-w-xl text-lg text-muted-foreground">
+          Transform long, unwieldy URLs into clean, shareable short links in seconds. Track clicks, manage links, and grow your audience.
+        </p>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <SignUpButton>
+            <Button size="lg" className="bg-[#6c47ff] hover:bg-[#5a39d9] text-white rounded-full px-8">
+              Get started for free
+            </Button>
+          </SignUpButton>
+          <Button size="lg" variant="outline" className="rounded-full px-8" asChild>
+            <a href="#features">See features</a>
+          </Button>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="w-full max-w-5xl px-4 pb-24">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold tracking-tight">Everything you need</h2>
+          <p className="mt-3 text-muted-foreground">
+            Powerful features to manage and share your links efficiently.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Card>
+            <CardHeader>
+              <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-[#6c47ff]/10">
+                <Link2 className="h-5 w-5 text-[#6c47ff]" />
+              </div>
+              <CardTitle className="text-base">Instant shortening</CardTitle>
+              <CardDescription>
+                Paste any URL and get a short link in one click. No sign-up required to try.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-[#6c47ff]/10">
+                <BarChart3 className="h-5 w-5 text-[#6c47ff]" />
+              </div>
+              <CardTitle className="text-base">Click analytics</CardTitle>
+              <CardDescription>
+                Track how many times your links are clicked and where your audience comes from.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-[#6c47ff]/10">
+                <Zap className="h-5 w-5 text-[#6c47ff]" />
+              </div>
+              <CardTitle className="text-base">Fast redirects</CardTitle>
+              <CardDescription>
+                Lightning-fast redirects powered by edge infrastructure so your visitors never wait.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-[#6c47ff]/10">
+                <Shield className="h-5 w-5 text-[#6c47ff]" />
+              </div>
+              <CardTitle className="text-base">Secure & reliable</CardTitle>
+              <CardDescription>
+                All links are protected and your data is kept private. 99.9% uptime guaranteed.
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="w-full border-t py-24">
+        <div className="flex flex-col items-center gap-6 px-4 text-center">
+          <h2 className="text-3xl font-bold tracking-tight">
+            Ready to get started?
+          </h2>
+          <p className="max-w-md text-muted-foreground">
+            Create your free account today and start shortening links in seconds.
+          </p>
+          <SignUpButton>
+            <Button size="lg" className="bg-[#6c47ff] hover:bg-[#5a39d9] text-white rounded-full px-8">
+              Create free account
+            </Button>
+          </SignUpButton>
+        </div>
+      </section>
+    </main>
   );
 }
